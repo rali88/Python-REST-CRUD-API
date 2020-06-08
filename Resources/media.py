@@ -7,6 +7,7 @@ class Media(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('rank', type=float)
     parser.add_argument('genre')
+    parser.add_argument('store_id', type=int)
 
     @jwt_required()
     def get(self, name):

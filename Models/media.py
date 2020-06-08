@@ -1,4 +1,4 @@
-from db import db 
+from db import db
 class MediaModel(db.Model):
     
     __tablename__ = 'media'
@@ -6,14 +6,17 @@ class MediaModel(db.Model):
     name = db.Column(db.String())
     rank = db.Column(db.Float())
     genre = db.Column(db.String())
+    store_id = db.Column(db.Integer(), db.ForeignKey('mediastore.id'))
+    store = db.relationship('StoreModel')
 
-    def __init__(self, name, rank, genre):
+    def __init__(self, name, rank, genre, store_id):
         self.name = name
         self.rank = rank
         self.type = genre
+        self.store_id = store_id
     
     def jsonify(self):
-        return {'name': self.name, 'rank': self.rank, 'genre':self.genre}
+        return {'name': self.name, 'rank': self.rank, 'genre': self.genre, 'store_id': self.store_id}
 
     @classmethod
     def get_one(cls, name):

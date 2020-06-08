@@ -5,6 +5,7 @@ from flask_jwt import JWT
 from security import authenticate, identity 
 from Resources.user import UserRegister
 from Resources.media import Media, Medialist
+from Resources.mediastore import Store, Storelist
 from db import db
 
 app = Flask(__name__)
@@ -22,6 +23,8 @@ jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Media, '/media/<string:name>')
 api.add_resource(Medialist, '/medialist')
+api.add_resource(Store, '/store/<string:name>')
+api.add_resource(Storelist, '/stores')
 api.add_resource(UserRegister, '/register')
 
 if __name__ == "__main__":
